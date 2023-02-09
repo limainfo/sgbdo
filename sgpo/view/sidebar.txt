@@ -1,0 +1,131 @@
+	
+	<!--
+			<div class="block withsidebar">
+			
+				<div class="block_head">
+					<div class="bheadl"></div>
+					<div class="bheadr"></div>
+					
+					<h2>Processo de Habilitação - Perfil Gerente</h2>
+				</div>		<!-- .block_head ends -->
+				
+				<script language="javascript">
+				function exibe(id = null, menu = null){
+					var view = '';
+							switch(id){
+								case 'rn001': view = '<cfoutput>#caminho#</cfoutput>view/rn001.cfm'; break;
+								case 'rn002': view = '<cfoutput>#caminho#</cfoutput>view/rn002.cfm'; break;
+								case 'rn003': view = '<cfoutput>#caminho#</cfoutput>view/rn003.cfm'; break;
+								case 'rn004': view = '<cfoutput>#caminho#</cfoutput>view/rn004.cfm'; break;
+								case 'rn005': view = '<cfoutput>#caminho#</cfoutput>view/rn005.cfm'; break;
+								case 'rn006': view = '<cfoutput>#caminho#</cfoutput>view/rn006.cfm'; break;
+								case 'rn007': view = '<cfoutput>#caminho#</cfoutput>view/rn007.cfm'; break;
+								case 'rn008': view = '<cfoutput>#caminho#</cfoutput>view/rn008.cfm'; break;
+								case 'rn009': view = '<cfoutput>#caminho#</cfoutput>view/rn009.cfm'; break;
+								case 'rn010': view = '<cfoutput>#caminho#</cfoutput>view/rn010.cfm'; break;
+								case 'rn011': view = '<cfoutput>#caminho#</cfoutput>view/rn011.cfm'; break;
+							}
+						if(id!=null){
+						  //$(menu).css({'background-color':'#ffffff'});
+							$("a").each(function() {
+							  var $href = $(this);
+								if($href.hasClass('sgpotogle')){
+									$href.removeClass('sgpotogle');
+								}
+							  });
+  						  $(menu).toggleClass('sgpotogle');
+
+							};						  
+						  $.ajax({
+							type: 'POST',
+							 processData: true,
+							url: view,
+							beforeSend: function(){
+							  $("#sgpospinner").css({'display':'block'});
+							},
+							success: function(data) {
+							  $("#sgpoareageral").html(data);
+							  $("#sgpoareageral").css({'display':'block'});
+							  $("#sgpospinner").css({'display':'none'});
+							},
+							error: function() {},
+							data: {'varteste':'valorteste'} ,
+							datatype: 'text',
+							contentType: 'application/x-www-form-urlencoded'
+						  });
+					  }
+					
+				
+				
+				</script>
+				
+				<div class="block_content">
+					<div class="sidebar">
+						<ul class="sidemenu">
+							<li><a href="#" onmouseover="$('#rn001').css({'display':'block'});" onmouseout="$('#rn001').css({'display':'none'});" onclick="exibe('rn001','#sgpomenu001');" id='sgpomenu001'>Pessoal a ser incluído</a></li>
+							<li><a href="#sb2" onmouseover="$('#rn002').css({'display':'block'});" onmouseout="$('#rn002').css({'display':'none'});" id='sgpomenu002' onclick="exibe('rn002','#sgpomenu002');" id='sgpomenu002'>Pessoal a ser transferido</a></li>
+							<li><a href="#sb3" onmouseover="$('#rn003').css({'display':'block'});" onmouseout="$('#rn003').css({'display':'none'});" id='sgpomenu003' onclick="exibe('rn003','#sgpomenu003');" id='sgpomenu003'>Designação de Função para o pessoal</a></li>
+							<li><a href="#sb3" onmouseover="$('#rn004').css({'display':'block'});" onmouseout="$('#rn004').css({'display':'none'});" id='sgpomenu004' onclick="exibe('rn004','#sgpomenu004');" id='sgpomenu004'>Incluir Ficha Cadastral</a></li>
+							<li><a href="#sb3" onmouseover="$('#rn011').css({'display':'block'});" onmouseout="$('#rn011').css({'display':'none'});" id='sgpomenu011' onclick="exibe('rn011','#sgpomenu011');" id='sgpomenu011'>Incluir Anexos </a></li>
+							<li><a href="#sb3" onmouseover="$('#rn005').css({'display':'block'});" onmouseout="$('#rn005').css({'display':'none'});" id='sgpomenu005' onclick="exibe('rn005','#sgpomenu005');" id='sgpomenu005'>Verificar Conclusão do Processo de Habilitação</a></li>
+						</ul>
+						
+						<p id='rn001' style='display:none;'><strong><u>RN001</u> - Controlar o acesso de usuários ao sistema.</strong>
+						Controlar a lotação do usuário por jurisdição, regional e unidade. Perfis gerados: sdop, gerente, seção de instrução, instrutor.</p>
+						<p id='rn002' style='display:none;'><strong><u>RN002</u> - Cadastrar ficha cadastral.</strong>
+						Possibilitar que haja integração entre os sistemas LPNA, SIGPES, EPLI, BCA e DCTP. Caso são seja possível, deve-se implementar um robô de busca no BCA. Um alerta deve ser emitido para o perfil gerente informando sobre um novo operador que ainda não foi incluído no órgão.</p>
+						<p id='rn003' style='display:none;'><strong><u>RN003</u> - Designar operador pelo perfil gerente</strong>
+						Possibilitar atribuir dados: localidade, unidade (FAB, INFRAERO, outros), órgão/região se houver, o tipo de contrato (C → civil dacta, CT → civil contrato DECEA, CTT → tarefa por tempo certo, CN → contrato fundação, M → militar da ativa, F → fora do sistema, I → INFRAERO, MB → marinha, EB → exército, O → exterior, LTIP, DAESP) e designar função no órgão. Verificar a existência de habilitação anterior no LPNA. Atribuir horas adicionais oriundas de estágio simulado (ME → modo especial)</p>
+						<p id='rn004' style='display:none;'><strong><u>RN004</u> - Processar a fase inicial da habilitação pelos perfis instrutor e instrução</strong>
+						Cadastrar capa do processo conforme anexo A, gerando número do processo e data. Informar coordenadores. Informar categoria de habilitação pretendida. Informar a quantidade de horas de estágio necessárias.</p>
+						<p id='rn005' style='display:none;'><strong><u>RN005</u> - Processar o acompanhamento da habilitação pelo perfil instrutor</strong>
+						O instrutor preenche o anexo D (avaliação prática diária), sendo que cada ficha do anexo D gera uma ficha do anexo C que deverá ser confirmada pelo perfil instrutor e dado ciência pelo perfil seção de instrução. Cálculo do rendimento: (ótimos x 4 + bons x 2 + regulares)/(número de itens avaliados) +6, se acima de 90% → ótimo, 80% a 90% → bom, 70% a 79% → regular, abaixo de 70% não satisfatório.Enviar alerta, baseado na quantidade de horas de estágio, para iniciar conselho para inserção da ATA.</p>
+						<p id='rn006' style='display:none;'><strong><u>RN006</u> - Processar a conclusão da habilitação pelo perfil seção de instrução</strong>
+						Ao concluir o número de horas o instrutor solicita a avaliação final conforme ANEXO B que serão desginados até 6 instrutores para  a avaliação final que receberão e-mail automaticamente. Ao ser aprovado o mesmo irá a Conselho Operacional. Após deliberação do conselho deve-se escanear ATA e inserir no sistema, a seguir, finalizar o estágio e inserir a informação no LPNA ou inserir acréscimo na quantidade de horas de estágio para gerar uma nova ficha e continuar o estágio.</p>
+						<p id='rn007' style='display:none;'><strong><u>RN007</u> - Processar a conclusão do processo habilitação empregando o perfil gerente</strong>
+						Copiar itens de boletim gerados pelo sistema para inserir no SIGPES e finalizar com a capa do processo Anexo A. Exibir registros que ainda aguardam o número do boletim para atualização posterior, sendo que o estagiário já pode entrar na escala operacional com autorização do DO.</p>
+						<p id='rn008' style='display:none;'><strong><u>RN008</u> - Acompanhar todas as fases do processo de habilitação empregando o perfil sdop</strong>
+						Exibir todos os estagiários do mês por órgão informando concluídos e em andamento.</p>
+						<p id='rn009' style='display:none;'><strong><u>RN009</u> - Controlar e monitorar o processo da avaliação operacional  empregando o perfil seção de instrução</strong>
+						Controlar o resultado dos testes operacionais e realizar avaliações práticas baseadas nas fichas do Anexo D. Designar instrutores  para, no mínimo, 12 horas de instrução. Média ponderada do aproveitamento e rendimento dos ATCOS. Fórmula: Média = ((Aproveitamento_Teste_Operacional x 2) + Rendimento_Media_Aritmética_Fichas)/3 Média > 90% → ótimo 80% a 90% → bom 70% a 79% → regular abaixo de 70% não satisfatório</p>
+						<p id='rn010' style='display:none;'><strong><u>RN010</u> - Consultar todo o histórico operacional empregando o perfil gerente e sdop</strong>
+						Consultar habilitações em categorias e realidades no LPNA/SGBDO. Consultar cursos da DCTP. Designar como instrutor, adjunto, escalante, chefe e instrutor para ICEA/EEAR por um período determinado. Cadastrar afastamentos que afetam a operacionalidade LPNA e escalantes cadastram afastamentos referentes a escalas. Exibir quantitativo de ATCOS com base na ICA 100-25. (págs. 12-13) Somatório de N = [(D/PC)+1]xCxATCO por turno, obter EFS</p>
+					</div>		<!-- .sidebar ends -->
+					<div class="sidebar_content" id='sgpoareageral'>
+&nbsp;
+	<!-- ------------------------------------------------------------------------------- -->
+<strong>AVISOS GERAIS</strong>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<!-- ------------------------------------------------------------------------------- -->
+					</div>		<!-- .sidebar_content ends -->
+					
+					
+					
+										
+				</div>		<!-- .block_content ends -->
+
+				
+				<div class="bendl"></div>
+				<div class="bendr"></div>
+				
+			</div>		<!-- .block ends -->
+					
+			-->
+			
+		
+			
+	
+
+
+
+
+
+	
+<script language="javascript">
+      $("#erro").css({'display':'none'});
+      $("#sucesso").css({'display':'none'});
+      $("#cuidado").css({'display':'none'});
+      $("#informacao").css({'display':'none'});
+</script>	
+<div style="background-color: #FFFFFF; display: none; z-index: 1030; position: fixed; top: 30%; left: 30%; float: center; border-top-width: thin; border-right-width: thin; border-bottom-width: thin; border-left-width: thin; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: #000000; border-right-color: #000000; border-bottom-color: #000000; border-left-color: #000000;" id="sgpospinner"><img width="15" height="15" alt="" src="<cfoutput>#caminho#</cfoutput>images/ajax-loader.gif"> Carregando ...</div>	
+	
