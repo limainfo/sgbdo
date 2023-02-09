@@ -1,0 +1,17 @@
+div.block div.block_head ul.submenu li a { color:#FF6600 !important; }
+
+div.block div.block_head ul.submenu li a.current { color:#333333 !important; }
+
+#header.sgpo {
+	background: url(../images/hdr.gif) 0 0 repeat-x;
+	color: #FFF;
+	}
+	
+#header .hdrl {
+	background: url(../images/hdrl.gif) top left no-repeat;
+	}
+
+#header .hdrr {
+	background: url(../images/hdrr.gif) top right no-repeat;
+}
+

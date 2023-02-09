@@ -1,0 +1,421 @@
+<cfif not StructKeyExists(session,"id") >
+		<cfset status='ERRO'>
+		<cfset mensagemstatus='O tempo da conexão terminou. <a href="../../../../../id/?i=logout&appID=#app.appID#">Log in novamente.</a>' >
+		<cfinclude template="../view/fimsessao.cfm">
+		<cfabort>		
+</cfif>
+<cfset id=CreateUUID()>
+<cfparam name="Form.controller" default="">	
+<cfparam name="conteudoconsulta" default="">	
+<cfset controllernome='usuario' >
+<cfset controllernomeplural='usuarios' >
+<cfset controllernomecampo='Usuarios' >
+<cfparam name="url.pesquisa" default="">
+<cfset url.i="Usuário">
+<cfset controllernomeid='usuarioID' >
+<cfparam name="nrprocesso" default="1000">
+
+<cfscript>
+//<!-- -------------------------Usuarios--------------------------  -->
+//<!-- -------------------------list--------------------------  -->
+</cfscript>
+<cfif Form.controller=='usuarios' and Form.action=='list' and evaluate('acoes.'& controllernomeplural & '["list"]')==1 >
+	<cfset url.acao="list">
+	<cfset status='OK'>
+	<cfset url.pagina=#Form.pagina#>
+	<cfparam name="completasql" default="">
+	<cfset url.pesquisa = urldecode(url.pesquisa) >
+	<cftry>	
+		<cfquery datasource="#dsn#" name="conteudoconsulta">
+				select *, ur.nome as unidade, ru.nome as usuario, login.email as mail from root_usuarios ru
+				left join sgpo_usuarios su on (su.usuarioID=ru.usuarioID)
+				inner join unidades_regionais ur on (ur.regionalID=ru.unidadeID)
+				left join passaporte.login as login on (login.passID=ru.passID)
+				where
+				(ru.nome like <cfqueryparam  value="%#url.pesquisa#%" cfsqltype="cf_sql_char"> or cpf like <cfqueryparam  value="%#url.pesquisa#%" cfsqltype="cf_sql_char"> ) 
+				and ru.deletedat is null 
+				order by ru.updatedat desc, ru.createdat desc;
+		</cfquery>
+	<cfcatch type="any">
+		<cfset status='ERRO'>
+		<cfset conteudo=''>
+	</cfcatch>	
+	</cftry>	
+
+	<cfinclude template="../view/listusuario.cfm">
+</cfif>
+
+<cfscript>
+//<!-- -------------------------Busca--------------------------  -->
+</cfscript>
+<cfif Form.controller=='usuarios' and Form.action=='busca' and evaluate('acoes.'& controllernomeplural & '["busca"]')==1 >
+	<cfset url.acao="list">
+	<cfset status='OK'>
+	<cfset url.pagina=#Form.pagina#>
+	<cfset url.pesquisa=#Form.busca#>
+	<cfset url.pagina='1' >
+	
+	<cftry>	
+		<cfquery datasource="#dsn#" name="conteudoconsulta">
+				select *, ur.nome as unidade, ru.nome as usuario, login.email as mail from root_usuarios ru
+				left join sgpo_usuarios su on (su.usuarioID=ru.usuarioID)
+				inner join unidades_regionais ur on (ur.regionalID=ru.unidadeID)
+				left join passaporte.login as login on (login.passID=ru.passID)
+				where
+				(ru.nome like <cfqueryparam  value="%#url.pesquisa#%" cfsqltype="cf_sql_char"> or cpf like <cfqueryparam  value="%#url.pesquisa#%" cfsqltype="cf_sql_char">  or su.perfilID like <cfqueryparam  value="%#url.pesquisa#%" cfsqltype="cf_sql_char"> or cpf like <cfqueryparam  value="%#url.pesquisa#%" cfsqltype="cf_sql_char">) 
+				order by ru.updatedat desc, ru.createdat desc;
+	</cfquery>
+	<cfcatch type="any">
+		<cfset status='ERRO'>
+		<cfset conteudo=''>
+	</cfcatch>	
+	</cftry>	
+	<cfif queryrecordcount(conteudoconsulta) gt 0>
+		<cfset status='OK'>
+		<cfset mensagemstatus=#conteudoconsulta.recordcount# & ' registro(s) encontrado(s) '>
+	<cfelse>
+		<cfset status='ERRO'>
+		<cfset mensagemstatus='Nenhum registro(s) encontrado(s) '>
+	</cfif>
+
+	<cfinclude template="../view/listusuario.cfm">
+</cfif>
+
+<cfscript>
+//<!-- -------------------------Ver---------------------------->
+</cfscript>
+<cfif Form.controller=='usuarios' and Form.action=='ver' and evaluate('acoes.'& controllernomeplural & '["ver"]')==1 >
+	<cfset url.acao="ver">
+	<cfset status='OK'>
+	<cfset url.pagina=#Form.pagina#>
+		<cfquery datasource="#dsn#" name="spj">
+		select * from sgpo_usuarios su
+		inner join sgpo_perfils sp on (su.perfilID=sp.perfilID)
+		inner join sgpo_perfiljurisdicao spj on (spj.perfilID=sp.perfilID)
+		where
+		(su.usuarioID=<cfqueryparam  value="#form.id#" cfsqltype="cf_sql_char">) ;
+		</cfquery>
+		<cfloop query="spj">
+		<cfset habilitacao = evaluate("""" & spj.habilitacao & """") >
+		<cfset regional = evaluate("""" & spj.regionalID & """") >
+		<cfset unidade = evaluate("""" & spj.unidadeID & """") >
+		<cfset setor = evaluate("""" & spj.setorID & """") >
+		</cfloop>
+		<cfset contenhaHabilitacao = "("& ListQualify(habilitacao, """") &")" >
+		<cfset contenhaRegionalID = "("& ListQualify(regional, """") &")" >
+		<cfset contenhaUnidadeID = "("& ListQualify(unidade, """") &")" >
+		<cfset contenhaSetorID = "("& ListQualify(setor, """") &")" >
+		<cfquery datasource="#dsn#" name="conteudoconsulta">
+		select * from sgpo_usuarios sp 
+		where usuarioID=<cfqueryparam  value="#form.id#" cfsqltype="cf_sql_char">;
+		</cfquery>
+		
+	<cftry>	
+			
+	<cfcatch type="any">
+		<cfset status='ERRO'>
+		<cfset conteudo=''>
+	</cfcatch>	
+	</cftry>	
+	<cfinclude template="../view/verusuario.cfm">
+</cfif>
+
+
+<cfscript>
+//<!-- -------------------------exclui--------------------------  -->
+</cfscript>
+<cfif Form.controller=='usuarios' and Form.action=='exclui' and evaluate('acoes.'& controllernomeplural & '["exclui"]')==1 >
+	<cfset url.acao="exclui">
+	<cfset status='OK'>
+	<cfset mensagemstatus = 'O usuario ->' & #form.nome# & ' foi excluído com sucesso!'>
+	<cfset url.pagina=#Form.pagina#>
+	<cftry>	
+		<cfquery datasource="#dsn#" name="excluiusuarios">
+		update sgpo_usuarios set deleted=now(), usuariodeletou='#u.usuarioID#', ipdeletou='#cgi.remote_addr#', hostdeletou='#cgi.remote_host#' where usuarioID=<cfqueryparam  value="#form.id#" cfsqltype="cf_sql_char">;
+		</cfquery>
+		<cfquery datasource="#dsn#" name="excluiusuarios">
+		update root_usuarios set deletedat=now() where usuarioID=<cfqueryparam  value="#form.id#" cfsqltype="cf_sql_char">;
+		</cfquery>
+		<cfquery datasource="#dsn#" name="p">
+		select passID from root_usuarios where usuarioID=<cfqueryparam  value="#form.id#" cfsqltype="cf_sql_char">;
+		</cfquery>
+		<cfquery datasource="#dsnp#" name="excluiusuarios">
+		update login set status=0 where passID=<cfqueryparam  value="#p.passID#" cfsqltype="cf_sql_char">;
+		</cfquery>
+		<cfquery name="atualizalpna" datasource="#dsnp#">
+			update acessos set status=0 where passID=<cfqueryparam  value="#p.passID#" cfsqltype="cf_sql_char"> and appID=<cfqueryparam  value="#appID#" cfsqltype="cf_sql_char">;
+		</cfquery>
+		<cfscript>
+			a=obtemSql(conteudoconsulta);
+		</cfscript>
+	<cfcatch type="any">
+		<cfset status='ERRO'>
+		<cfset mensagemstatus='A informação não pode ser excluída. Motivo:' & CFCATCH.Message >
+		<cfset conteudo=''>
+	</cfcatch>	
+	</cftry>	
+		<cfquery datasource="#dsn#" name="conteudoconsulta">
+				select *, ur.nome as unidade, ru.nome as usuario from root_usuarios ru
+				left join sgpo_usuarios su on (su.usuarioID=ru.usuarioID)
+				inner join unidades_regionais ur on (ur.regionalID=ru.unidadeID)
+				where
+				(ru.nome like <cfqueryparam  value="%#url.pesquisa#%" cfsqltype="cf_sql_char"> or cpf like <cfqueryparam  value="%#url.pesquisa#%" cfsqltype="cf_sql_char"> ) 
+				and ru.deletedat is null 
+				order by ru.updatedat desc, ru.createdat desc;
+		</cfquery>
+	
+
+	<cfinclude template="../view/listusuario.cfm">
+</cfif>
+
+
+<cfscript>
+//<!-- -------------------------veredit--------------------------  -->
+</cfscript>
+<cfif Form.controller=='usuarios' and Form.action=='veredit' and evaluate('acoes.'& controllernomeplural & '["veredit"]')==1 >
+	<cfset status='OK'>
+	<cfset url.pagina=#Form.pagina#>
+		<cfquery datasource="#dsn#" name="conteudoconsulta">
+				select *, ur.nome as unidade, ru.nome as usuario, ru.perfil as perfillpna, su.perfilID as perfilID, login.email as mail  from root_usuarios ru
+				left join sgpo_usuarios su on (su.usuarioID=ru.usuarioID)
+				inner join unidades_regionais ur on (ur.regionalID=ru.unidadeID)
+				left join passaporte.login as login on (login.passID=ru.passID)				
+				where
+				ru.usuarioID=<cfqueryparam  value="#form.id#" cfsqltype="cf_sql_char">
+				order by ru.updatedat desc, ru.createdat desc;
+		</cfquery>		
+	<cftry>	
+
+	<cfcatch type="any">
+		<cfset status='ERRO'>
+		<cfset mensagemstatus='Erro na consulta. Motivo:' & CFCATCH.Message >
+		<cfset conteudo=''>
+	</cfcatch>	
+	</cftry>	
+	<cfinclude template="../view/editusuario.cfm">
+</cfif>
+
+<cfscript>
+//<!-- -------------------------vercad--------------------------  -->
+</cfscript>
+<cfif Form.controller=='usuarios' and Form.action=='vercad' and evaluate('acoes.'& controllernomeplural & '["vercad"]')==1 >
+	<cfset status='OK'>
+	<cfset url.pagina=#Form.pagina#>
+	<cfinclude template="../view/cadusuario.cfm">
+</cfif>
+	
+<cfscript>
+//<!-- -------------------------edit--------------------------  -->
+</cfscript>
+<cfif Form.controller=='usuarios' and Form.action=='edit' and evaluate('acoes.'& controllernomeplural & '["edit"]')==1 >
+	<cfset url.pesquisa = urldecode(url.pesquisa) >
+	<cfset url.pagina=#Form.pagina#>
+	<cfset url.i='Estagiario'>
+	<cfset url.acao='list'>
+	<cfset status='OK'>
+	<cfset mensagemstatus='Dados registrados com sucesso!' >
+		
+<cftry>	
+<cfscript>
+	atualizasenha = '';
+	if(form.Usuarios.Senha neq ''){
+		form.Usuarios.Senha = Hash(form.Usuarios.Senha,'SHA-512');
+		atualizasenha = ', senha="' & form.Usuarios.Senha & '"';
+		mensagemstatus = 'Dados e senha modficados com sucesso.'
+	}
+	if(structkeyexists(form.Usuarios,'Ativo')){
+		ativo = 1;
+		sqldel = ' ,deleted=null ';
+		sqldellpna = ' ,deletedat=null ';
+	}else{
+		ativo = 0;
+		sqldel = ' ,deleted=now() ';
+		sqldellpna = ' ,deletedat=now() ';
+	}
+
+</cfscript>
+		<cfquery name="atualizalpna" datasource="#dsnp#">
+			update login set status=#ativo#, updatedat=now(), email=<cfqueryparam  value="#form.Usuarios.Email#" cfsqltype="cf_sql_char"> #atualizasenha# where passID=<cfqueryparam  value="#form.Usuarios.PassID#" cfsqltype="cf_sql_char">;
+		</cfquery>
+		<cfquery name="atualizalpna" datasource="#dsnp#">
+			update acessos set status=#ativo# where passID=<cfqueryparam  value="#form.Usuarios.PassID#" cfsqltype="cf_sql_char"> and appID=<cfqueryparam  value="#appID#" cfsqltype="cf_sql_char">;
+		</cfquery>
+		<cfquery name="atualiza" datasource="#dsn#">
+			update root_usuarios set unidadeId=<cfqueryparam  value="#form.Usuarios.UnidadeID#" cfsqltype="cf_sql_char">, email=<cfqueryparam  value="#form.Usuarios.Email#" cfsqltype="cf_sql_char">, perfil=<cfqueryparam  value="#form.Usuarios.PerfilLPNA#" cfsqltype="cf_sql_char"> #sqldellpna# where usuarioID=<cfqueryparam  value="#form.Usuarios.UsuarioID#" cfsqltype="cf_sql_char">;
+		</cfquery>
+		<cfquery name="verificasgpo" datasource="#dsn#">
+			select * from sgpo_usuarios where usuarioID=<cfqueryparam  value="#form.Usuarios.UsuarioID#" cfsqltype="cf_sql_char">;
+		</cfquery>
+		<cfset existesgpo=queryrecordcount(verificasgpo) >
+		<cfif existesgpo gt 0 >
+			<cfquery name="qtdusuarios" datasource="#dsn#">
+				update sgpo_usuarios set perfilID=<cfqueryparam  value="#form.Usuarios.PerfilID#" cfsqltype="cf_sql_char">, updated=now(), usuariomodificou='#u.usuarioID#', ipmodificou='#cgi.remote_addr#', hostmodificou='#cgi.remote_host#' #sqldel# where usuarioID=<cfqueryparam  value="#form.Usuarios.UsuarioID#" cfsqltype="cf_sql_char">;
+			</cfquery>
+		<cfelse>
+			<cfquery name="insereusuarios" datasource="#dsn#">
+					insert into sgpo_usuarios (usuarioID, perfilID, created, usuariocriou, ipcriou, hostcriou) values (<cfqueryparam  value="#form.Usuarios.UsuarioID#" cfsqltype="cf_sql_char">, <cfqueryparam  value="#form.Usuarios.perfilID#" cfsqltype="cf_sql_char">, now(), '#u.usuarioID#', '#cgi.remote_addr#','#cgi.remote_host#');
+			</cfquery>
+		</cfif>
+<cfcatch type="any">
+	<cfset status='ERRO'>
+	<cfset mensagemstatus='Dados não registrados. Motivo:' & CFCATCH.Message  & CFCATCH.Detail >
+	<cfset conteudo=''>
+</cfcatch>	
+</cftry>	
+	<cfquery datasource="#dsn#" name="conteudoconsulta">
+				select *, ur.nome as unidade, ru.nome as usuario, login.email as mail from root_usuarios ru
+				left join sgpo_usuarios su on (su.usuarioID=ru.usuarioID)
+				inner join unidades_regionais ur on (ur.regionalID=ru.unidadeID)
+				left join passaporte.login as login on (login.passID=ru.passID)
+				where
+				(ru.nome like <cfqueryparam  value="%#url.pesquisa#%" cfsqltype="cf_sql_char"> or cpf like <cfqueryparam  value="%#url.pesquisa#%" cfsqltype="cf_sql_char"> ) 
+				and ru.deletedat is null 
+				order by ru.updatedat desc, ru.createdat desc;
+	</cfquery>
+<cfinclude template="../view/listusuario.cfm">
+</cfif>
+
+<cfscript>
+//<!-- -------------------------cad--------------------------  -->
+</cfscript>
+<cfif Form.controller=='usuarios' and Form.action=='cad' and evaluate('acoes.'& controllernomeplural & '["cad"]')==1 >
+	<cfset url.pesquisa = urldecode(url.pesquisa) >
+	<cfset status='OK'>
+	<cfset mensagemstatus='' >
+	<cfset url.pagina=#Form.pagina#>
+	<cfset url.i='Estagiario'>
+	<cfset url.acao='list'>
+	<cfparam name="erros" default="0">
+		
+		<cfscript>
+		validacao = ArrayNew();
+		validacao[1]=StructNew();
+		validacao[1].campo = 'CPF';
+		validacao[1].valor = evaluate('form.' & controllernomecampo & '.Cpf');
+		validacao[1].validacao = 'cpf';
+		validacao[1].requerido = 1;
+		validacao[1].minimo = 11;
+		validacao[1].limite = 11;
+		validacao[2]=StructNew();
+		validacao[2].campo = 'Nome';
+		validacao[2].valor = evaluate('form.' & controllernomecampo & '.Nome');
+		validacao[2].validacao = 'literal';
+		validacao[2].requerido = 1;
+		validacao[2].minimo = 10;
+		validacao[2].limite = 200;
+		validacao[3]=StructNew();
+		validacao[3].campo = 'Email';
+		validacao[3].valor = evaluate('form.' & controllernomecampo & '.Email');
+		validacao[3].validacao = 'email';
+		validacao[3].requerido = 1;
+		validacao[3].minimo = 8;
+		validacao[3].limite = 100;
+		validacao[4]=StructNew();
+		validacao[4].campo = 'Senha';
+		validacao[4].valor = evaluate('form.' & controllernomecampo & '.Senha');
+		validacao[4].validacao = 'literal';
+		validacao[4].requerido = 1;
+		validacao[4].minimo = 4;
+		validacao[4].limite = 100;
+		//dump(validacao);
+		resultado = valida(validacao);
+		status = resultado.status;
+		mensagemstatus = resultado.mensagem;
+		erros = resultado.contador;
+		
+		
+		</cfscript>
+	<cftry>	
+
+		<cfset senha = Hash(form.Usuarios.Senha,'SHA-512') >
+
+		<cfquery name="verificalpna" datasource="#dsn#">
+		select * from root_usuarios where email like <cfqueryparam  value="%#form.Usuarios.Email#%" cfsqltype="cf_sql_char">;
+		</cfquery>
+		<cfquery name="verificapassaporte" datasource="#dsnp#">
+		select * from login where email like <cfqueryparam  value="%#form.Usuarios.Email#%" cfsqltype="cf_sql_char"> or login like <cfqueryparam  value="%#form.Usuarios.Email#%" cfsqltype="cf_sql_char">;
+		</cfquery>
+		<cfset existelpna=queryrecordcount(verificalpna) >
+		<cfset existepassaporte=queryrecordcount(verificapassaporte) >
+		<cfif existelpna gt 0 or existepassaporte gt 0  >
+			<cfset status='ERRO'>
+			<cfset mensagemstatus=  mensagemstatus & erros & '. Login já cadastrado.<br>'  >
+			<cfset erros = erros + 1>
+		<cfelse>
+			<cfif status eq 'OK'>
+				<cfquery name="insereusuarioslpna" datasource="#dsnp#">
+					insert into login (passID, login, senha, email, admin, status, createdat) values ('#id#', <cfqueryparam  value="#form.Usuarios.Email#" cfsqltype="cf_sql_char">, <cfqueryparam  value="#senha#" cfsqltype="cf_sql_char">, <cfqueryparam  value="#form.Usuarios.Email#" cfsqltype="cf_sql_char">, 1, 1, now());
+				</cfquery>
+				<cfquery name="insereusuarioslpna" datasource="#dsnp#">
+					insert into acessos (passID, appID, admin, status, createdat) values ('#id#', <cfqueryparam  value="#appID#" cfsqltype="cf_sql_char">, 1, 1, now());
+				</cfquery>
+				<cfset uID = CreateUUID() >
+				<cfquery name="insereusuarioslpna" datasource="#dsn#">
+					insert into root_usuarios (usuarioID, nome, email, nivel, perfil, cpf, dt_validade, unidadeId, passID, createdat) values ('#uID#', <cfqueryparam  value="#UCase(form.Usuarios.Nome)#" cfsqltype="cf_sql_char">, <cfqueryparam  value="#form.Usuarios.Email#" cfsqltype="cf_sql_char">, 1, <cfqueryparam  value="#form.Usuarios.PerfilLPNA#" cfsqltype="cf_sql_char">, <cfqueryparam  value="#form.Usuarios.Cpf#" cfsqltype="cf_sql_char">, now(), <cfqueryparam  value="#form.Usuarios.UnidadeID#" cfsqltype="cf_sql_char">, "#id#", now());
+				</cfquery>
+				<cfquery name="insereusuarios" datasource="#dsn#">
+				insert into sgpo_usuarios (usuarioID, perfilID, created, usuariocriou, ipcriou, hostcriou) values ('#uID#', <cfqueryparam  value="#form.Usuarios.perfilSGPO#" cfsqltype="cf_sql_char">, now(), '#u.usuarioID#', '#cgi.remote_addr#','#cgi.remote_host#');
+				</cfquery>
+
+			</cfif>
+		</cfif>
+		
+		
+	<cfcatch type="any">
+		<cfset status='ERRO'>
+		<cfset mensagemstatus=  mensagemstatus & erros & CFCATCH.Message  >
+		<cfset erros = erros + 1>
+		<cfset conteudo=''>
+	</cfcatch>	
+	</cftry>	
+	<cfif mensagemstatus eq ''><cfset mensagemstatus = 'Dados registrados com sucesso!<br>' ></cfif>
+
+	<cfset dados = StructNew() >
+	<cfset StructInsert(dados, 'status', status, 'TRUE')>
+	<cfset StructInsert(dados, 'mensagemstatus', mensagemstatus, 'TRUE') >
+
+	<cfif status neq 'OK'>
+	<cfcontent type="application/x-json"><cfoutput>#serializeJSON(dados, true)#</cfoutput></cfcontent>
+	<cfabort>
+	<cfelse>
+		<cfquery datasource="#dsn#" name="conteudoconsulta">
+				select *, ur.nome as unidade, ru.nome as usuario, login.email as mail from root_usuarios ru
+				left join sgpo_usuarios su on (su.usuarioID=ru.usuarioID)
+				inner join unidades_regionais ur on (ur.regionalID=ru.unidadeID)
+				left join passaporte.login as login on (login.passID=ru.passID)
+			where
+			(ru.nome like <cfqueryparam  value="%#url.pesquisa#%" cfsqltype="cf_sql_char"> or cpf like <cfqueryparam  value="%#url.pesquisa#%" cfsqltype="cf_sql_char"> ) 
+			and ru.deletedat is null 
+			order by ru.updatedat desc, ru.createdat desc;
+		</cfquery>
+		<cfsavecontent variable="lista"><cfinclude template="../view/listusuario.cfm" ></cfsavecontent>
+		<cfset StructInsert(dados, 'conteudo', lista , 'TRUE') >
+		<cfcontent type="application/x-json"><cfoutput>#serializeJSON(dados, true)#</cfoutput></cfcontent>
+			
+	</cfif>
+
+	
+
+	
+</cfif>
+
+
+
+
+<cfscript>
+//<!-- -------------------------select--------------------------  -->
+</cfscript>
+<cfif Form.controller=='usuarios' and Form.action=='atualizaselect' and evaluate('acoes.'& controllernomeplural & '["select"]')==1 >
+	<cfset tabelas = "unidades_regionais,unidades,sgpo_setores">
+	<cfset existencia = ListFind(tabelas, form.tabela) >
+	<cfset contenha = ListQualify(ArrayToList(form.contenha), """") >
+	<cfif existencia gt 0 >
+		<cfquery datasource="#dsn#" name="conteudoconsulta">
+			select #form.tabelaID# as id, #form.tabelacampo# as nome from #form.tabela# where #form.campoWhere# in (#contenha#) order by nome asc;
+		</cfquery>
+		<cfloop query="conteudoconsulta"><cfoutput><option value="#id#">#nome#</cfoutput></cfloop>
+
+	</cfif>
+<cfabort>
+</cfif>
+
