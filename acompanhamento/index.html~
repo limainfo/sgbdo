@@ -1,0 +1,244 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="content-language" content="en" />
+	<meta name="robots" content="noindex,nofollow" />
+	<link rel="stylesheet" media="screen,projection" type="text/css" href="css/reset.css" /> <!-- RESET -->
+	<link rel="stylesheet" media="screen,projection" type="text/css" href="css/main.css" /> <!-- MAIN STYLE SHEET -->
+	<link rel="stylesheet" media="screen,projection" type="text/css" href="css/2col.css" title="2col" /> <!-- DEFAULT: 2 COLUMNS -->
+	<link rel="alternate stylesheet" media="screen,projection" type="text/css" href="css/1col.css" title="1col" /> <!-- ALTERNATE: 1 COLUMN -->
+	<!--[if lte IE 6]><link rel="stylesheet" media="screen,projection" type="text/css" href="css/main-ie6.css" /><![endif]--> <!-- MSIE6 -->
+	<link rel="stylesheet" media="screen,projection" type="text/css" href="css/style.css" /> <!-- GRAPHIC THEME -->
+	<link rel="stylesheet" media="screen,projection" type="text/css" href="css/mystyle.css" /> <!-- WRITE YOUR CSS CODE HERE -->
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/switcher.js"></script>
+	<script type="text/javascript" src="js/toggle.js"></script>
+	<script type="text/javascript" src="js/ui.core.js"></script>
+	<script type="text/javascript" src="js/ui.tabs.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$(".tabs > ul").tabs();
+	});
+	</script>
+	<title>Acompanhamento de OS/PTA/DCTP</title>
+</head>
+
+<body>
+
+<div id="main">
+
+	<!-- Tray -->
+	<div id="tray" class="box">
+
+		<p class="f-left box">
+
+			<!-- Switcher -->
+			<span class="f-left" id="switcher">
+				<a href="#" rel="1col" class="styleswitch ico-col1" title="Display one column"><img src="design/switcher-1col.gif" alt="1 Column" /></a>
+				<a href="#" rel="2col" class="styleswitch ico-col2" title="Display two columns"><img src="design/switcher-2col.gif" alt="2 Columns" /></a>
+			</span>
+
+			Projeto: <strong>ACOMPANHAMENTO DE OS/PTA/DCTP</strong>
+		</p>
+
+		
+
+	</div> <!--  /tray -->
+
+	<hr class="noscreen" />
+
+	<!-- Menu -->
+
+	<hr class="noscreen" />
+
+	<!-- Columns -->
+	<div id="cols" class="box">
+
+		<!-- Aside (Left Column) -->
+		<div id="aside" class="box">
+
+			<div class="padding box">
+
+
+				<!-- Search -->
+				<form accept-charset="utf-8" action="conteudo.php"  method="post" id="colsultadados"  enctype="multipart/form-data" onsubmit="return false;" >
+					<fieldset>
+						<legend>Busca por nome</legend>
+
+						<p><input type="text" size="17" name="busca" class="input-text" />&nbsp;<input type="submit" value="OK" class="input-submit-02" id="btnconsulta"   /><br />
+						<a href="javascript:toggle('search-options');" class="ico-drop">Busca Avançada</a></p>
+
+						<!-- Advanced search -->
+						<div id="search-options" style="display:none;">
+
+							<p>
+								<label><input type="checkbox" name="opnome" checked="checked" />Parte do Nome</label><br />
+								<label><input type="checkbox" name="opcpf" />CPF</label><br />
+								<label><input type="checkbox" name="opidentidade" />Identidade</label><br />
+								<label><input type="checkbox" name="opsaram" />Saram</label><br />
+							</p>
+
+						</div> <!-- /search-options -->
+
+					</fieldset>
+				</form>
+
+				<!-- Create a new project -->
+			</div> <!-- /padding -->
+
+			
+		</div> <!-- /aside -->
+
+		<hr class="noscreen" />
+
+		<!-- Content (Right Column) -->
+		<div id="content" class="box">
+			<h1>ORIENTAÇÕES</h1>
+
+			<div class="tabs box">
+				<ul>
+					<li><a href="#tab01"><span>OS</span></a></li>
+					<li><a href="#tab02"><span>PTA</span></a></li>
+					<li><a href="#tab03"><span>DCTP</span></a></li>
+				</ul>
+			</div> <!-- /tabs -->
+
+			<!-- Tab01 -->
+			<div id="tab01">
+			
+				<p>Ao ser autorizada a missão deve-se confeccionar ordem de serviço (documento legal que autoriza a movimentação temporária de militar). A OS é inserida no sistema ONIX (http://onix.cindacta4.intraer) e possui vários status. Após confeccionada será impressa. Vai ser providenciado o preenchimento da requisição de passagem e encaminhados para assinatura pelo Comandante. Após assinatura do Comandante seguirá uma cópia da OS para o Controle Interno e a requisição para o setor de Passagens.</p>
+			</div> <!-- /tab01 -->
+
+			<!-- Tab02 -->
+			<div id="tab02">
+
+				<p>A passagem será adquirida pelo setor de Passagens do DECEA após a chegada da requisição assinada pelo Comandante e envio do respectivo FAX para o DECEA. O localizador estará disponível assim que for efetuada a compra. Para consultar a passagem pela Internet acesse http://servicos.decea.gov.br/passagem (pode ser obtida por SMS/E-mail)</p>
+
+			</div> <!-- /tab02 -->
+
+			<!-- Tab03 -->
+			<div id="tab03">
+
+				<p>No caso de realização de curso, os documentos de solicitação e confirmação de matrícula estará disponíveis assim que a SIAT providenciar o envio dos respectivos documentos.
+			<ol>
+				<li>Lorem ipsum dolor sit amet</li>
+				<li>Lorem ipsum dolor sit amet</li>
+				<li>Lorem ipsum dolor sit amet
+				<ol>
+					<li>Lorem ipsum dolor sit amet</li>
+					<li>Lorem ipsum dolor sit amet</li>
+					<li>Lorem ipsum dolor sit amet
+					<ol>
+						<li>Lorem ipsum dolor sit amet</li>
+						<li>Lorem ipsum dolor sit amet</li>
+						<li>Lorem ipsum dolor sit amet</li>
+						<li>Lorem ipsum dolor sit amet</li>
+						<li>Lorem ipsum dolor sit amet</li>
+					</ol>
+					</li>
+					<li>Lorem ipsum dolor sit amet</li>
+					<li>Lorem ipsum dolor sit amet</li>
+				</ol>
+				</li>
+				<li>Lorem ipsum dolor sit amet</li>
+				<li>Lorem ipsum dolor sit amet</li>
+			</ol>				</p>
+
+			</div> <!-- /tab03 -->
+
+			<!-- 2 columns -->
+			
+
+			<div class="fix"></div>
+
+
+
+<div id="resultados"></div>
+			
+			
+			
+
+
+			
+
+
+		</div> <!-- /content -->
+
+	</div> <!-- /cols -->
+
+	<hr class="noscreen" />
+
+	<!-- Footer -->
+	<div id="footer" class="box">
+
+		<p class="f-left">&copy; 2013 <a href="#">OPG</a>, 02566472750 &reg;</p>
+
+		<p class="f-right"><a href="http://www.adminizio.com/">limainfo@gmail.com</a></p>
+
+	</div> <!-- /footer -->
+
+</div> <!-- /main -->
+
+</body>
+</html>
+<script>
+$('#colsultadados').submit(function() {
+	var parametros = $("#colsultadados").serialize();
+	var dados = parametros;
+	$.ajax({
+		type: 'POST',
+		processData: true,
+		url: 'processa.php',
+		beforeSend: function() {
+			$("#resultados").html("<p class='t-center'><img src='design/loading.gif'><span style='position: relative; top: -13px; left: 10px; font-weight: bold;'>Carregando ...</span></p>'");
+			$("#btnconsulta").attr("disabled","disabled");
+		},
+		success: function(data) {
+			$("#resultados").html(data);
+			$("#btnconsulta").removeAttr("disabled");
+		},
+		error: function() {
+			$("#btnconsulta").removeAttr("disabled");
+		},
+		data: dados,
+		datatype: 'html',
+		contentType: 'application/x-www-form-urlencoded'
+	});
+return false;
+}
+);
+
+function email(email, txt, id) {
+	var parametros = {
+		'email': email,
+		'txt': txt
+	};
+	id = '#' + id;
+	var dados = parametros;
+	$.ajax({
+		type: 'POST',
+		processData: true,
+		url: './email.cfm',
+		beforeSend: function() {
+			$(id).attr("src", "loading.gif");
+		},
+		success: function(data) {
+			var obj = jQuery.parseJSON(data);
+			if (obj.ok == 1) {
+				$(id).attr("src", "concluido.png");
+			} else {
+				$(id).attr("src", "email.png");
+			}
+		},
+		error: function() {
+			$(id).attr("src", "email.png");
+		},
+		data: dados,
+		datatype: 'html',
+		contentType: 'application/x-www-form-urlencoded'
+	});
+}
+
+</script>
