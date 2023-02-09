@@ -1,0 +1,213 @@
+<cfheader name="Content-Disposition" value="inline; filename=fichacadastral.pdf">
+<cfdocument pagetype="a4" format="pdf" mimetype="image/jpeg" >
+
+<cfdocumentitem type="header">
+<cfoutput><span style="align:right;float:right;size:10px;font-size:8px;">Anexo C - ICA 100-18/2011 - Página 47 <div style="float:right;margin:0px;vertical-align:top;font-weight:bold;font-size:8px;">#cfdocument.currentpagenumber#/#cfdocument.totalpagecount#</div></span></cfoutput>
+</cfdocumentitem>
+
+<cfoutput><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Ficha Cadastral</title>
+<style type="text/css">
+<!--
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: black;
+	border: none;
+}
+body {
+	margin-top: 0px;
+}
+.titulo {
+	font-size: 16px;
+	font-weight: bold;
+	padding: 0 0 0 0;
+	margin-top: 0px;
+	margin-bottom: 0px;
+ }
+.titnum {
+	font-size: 16px;
+	margin: 0.1cm;
+ }
+.borda {
+	border:1px ##000000;
+}
+.bordamaior {
+	border:2px ##000000;
+}
+.txthead {
+	font-size: 12px;
+	font-weight: bold;
+}
+.txtin {
+	font-size: 10px;
+}
+.txtbd {
+
+}
+-->
+</style>
+</head>
+<cfloop query="conteudoconsulta">
+
+<body>
+<table width="100%" cellpadding="0" cellspacing="0"  >
+  <tr>
+    <td width="64%" rowspan="2" valign="top" style="border:none;margin:0;" class="txthead">COMANDO DA AERONÁUTICA<br />
+    DEPARTAMENTO DE CONTROLE DO ESPAÇO AÉREO<br />SUBDEPARTAMENTO DE OPERAÇÕES</td>
+    <td width="6%" rowspan="2"  class="borda" ><div align="center" class="titnum" >01</div></td>
+    <td width="30%" height="26" valign="top"  class="borda"><div class="txtin"><strong>&nbsp;&nbsp;&nbsp;a) Licença no. </strong></div><span class="txtbd">##licenca##</span></td>
+  </tr>
+  <tr>
+    <td height="14" valign="top"   class="borda"><strong><p class="txtin" >&nbsp;&nbsp;&nbsp;b) Indicativo Operacional <span class="txtbd">##indicativo##</span></p></strong></td>
+  </tr>
+</table>
+<p align="center" class="titulo">FICHA CADASTRAL DE CONTROLADOR DE TRÁFEGO AÉREO</p>
+<table width="100%"   cellpadding="1" cellspacing="0"  id="dadospessoais" style="margin-top:0px;">
+  <tr>
+    <td colspan="10"   scope="col" class="bordamaior"><div align="left" class="txthead">DADOS PESSOAIS</div></td>
+  </tr>
+  <tr>
+    <td width="8%"  class="borda"><div align="center" class="titnum" >02</div></td>
+    <td colspan="9" width="82%" valign="top"    class="borda"><span class="txtin">NOME COMPLETO: </span><span class="txtbd">#UCASE(nome)#</span></td>
+  </tr>
+  <tr>
+    <td   class="borda" width="8%" ><div align="center"  class="titnum">03</div></td>
+    <td colspan="4" valign="top" width="60%"   class="borda"><span class="txtin">NOME DE GUERRA: </span><span class="txtbd">##nomeguerra##</span></td>
+    <td width="9%"   class="borda" width="8%"  ><div align="center" class="titnum" >04</div></td>
+    <td colspan="4" valign="top" width="26%"    class="borda"><span class="txtin">POSTO / GRAD / NÍVEL </span><span class="txtbd">##posto##</span></td>
+  </tr>
+  <tr>
+    <td    class="borda" ><div align="center" class="titnum">05</div></td>
+    <td width="20%" valign="top"    class="borda"><span class="txtin">DATA NASC: </span><span class="txtbd">##datanasc##</span></td>
+    <td width="9%" valign="top"    class="borda"><div align="center" class="titnum" >06</div></td>
+    <td colspan="3" valign="top"    class="borda"><span class="txtin">DATA DA ADMISSÃO:</span><span class="txtbd">##dataadmiss##</span></td>
+    <td width="9%"   class="borda" ><div align="center" class="titnum">07</div></td>
+    <td colspan="3" valign="top"    class="borda"><span class="txtin">RG / ORG. EXP </span><span class="txtbd">##identidade##</span></td>
+  </tr>
+  <tr>
+    <td   class="borda"  ><div align="center" class="titnum">08</div></td>
+    <td colspan="5" valign="top"    class="borda"><span class="txtin">ÚLTIMA PROMOÇÃO:</span><span class="txtbd">##dtultimapromocao##</span></td>
+    <td   class="borda" ><div align="center" class="titnum">09</div></td>
+    <td colspan="3" valign="top"    class="borda"><span class="txtin">UNIDADE / ÓRGÃO: </span><span class="txtbd">##unidade##</span></td>
+  </tr>
+  <tr>
+    <td    class="borda" ><div align="center" class="titnum">10</div></td>
+    <td colspan="4" valign="top"    class="borda"><span class="txtin">DATA DA APRESENTAÇÃO: </span><span class="txtbd">##dtapresentacao##</span></td>
+    <td    class="borda" ><div align="center" class="titnum" >11</div></td>
+    <td colspan="4" valign="top"  class="borda" ><span class="txtin">PROCEDÊNCIA:</span><span class="txtbd">##procedencia##</span></td>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0" >
+  <tr>
+    <th colspan="7"  scope="col" class="bordamaior"><div align="left" class="txthead">HABILITAÇÃO</div></th>
+  </tr>
+  <tr>
+    <td width="8%"  class="borda"><div align="center" class="titnum">12</div></td>
+    <td colspan="3" valign="top" class="borda"><span class="txtin">CHT ANTERIOR: </span><span class="txtbd">##chtanterior##</span></td>
+    <td width="7%"  class="borda"><div align="center" class="titnum" >13</div></td>
+    <td colspan="2" valign="top" class="borda"><span class="txtin">VALIDADE:</span><span class="txtbd">##vldchtanterior##</span></td>
+  </tr>
+  <tr>
+    <td rowspan="2"  class="borda"><div align="center" class="titnum">14</div></td>
+    <td colspan="3" class="borda"><span class="txtin">CHT ATUAL: </span><span class="txtbd">##chtatual01##</span></td>
+    <td rowspan="2" class="borda"><div align="center" class="titnum" >15</div></td>
+    <td colspan="2" valign="top" class="borda"><span class="txtin">VALIDADE:</span><span class="txtbd">##vldchtatual01##</span></td>
+  </tr>
+  <tr>
+    <td colspan="3" class="borda"><span class="txtin">CHT ATUAL: </span><span class="txtbd">##chtatual02##</span></td>
+    <td colspan="2" valign="top" class="borda"><span class="txtin">VALIDADE:</span><span class="txtbd">##vldchtatual02##</span></td>
+  </tr>
+  <tr>
+    <td  class="borda"><div align="center" class="titnum">16</div></td>
+    <td colspan="3" valign="top" class="borda"><span class="txtin">FUNÇÃO ATUAL / SETOR: </span><span class="txtbd">##funcao##-##setor##</span></td>
+    <td  class="borda"><div align="center" class="titnum" >17</div></td>
+    <td colspan="2" valign="top" class="borda"><span class="txtin">CONDIÇÃO OPERACIONAL: </span><span class="txtbd">##condicaooperacional##</span></td>
+  </tr>
+  <tr>
+    <td rowspan="2"  class="borda"><div align="center" class="titnum">18</div></td>
+    <td width="32%" valign="top" class="borda"><span class="txtin">AVALIAÇÃO TEÓRICA: </span><span class="txtbd">##avalteorica##</span></td>
+    <td width="8%" rowspan="2"  class="borda"><div align="center" class="titnum" >19</div></td>
+    <td colspan="2" rowspan="2" valign="top" class="borda"><span class="txtin">CONCEITO OPERACIONAL: </span><span class="txtbd">##conceitooperacional##</span></td>
+    <td width="7%" rowspan="2"  class="borda"><div align="center" class="titnum" >20</div></td>
+    <td width="22%" rowspan="2" valign="top" class="borda"><span class="txtin">NÍVEL INGLÊS: </span><span class="txtbd">##nivelingles##</span></td>
+  </tr>
+  <tr>
+    <td valign="top" class="borda"><span class="txtin">AVALIAÇÃO PRÁTICA: </span><span class="txtbd">##avalpratica##</span></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th width="8%" scope="col" class="borda"><div align="center" class="titnum">21</div></th>
+    <th width="92%" class="bordamaior" scope="col"><div align="left" class="txthead">CURSOS (CÓDIGO / NOME / LOCAL / DATA) </div></th>
+  </tr>
+  <tr>
+    <td colspan="2" class="borda"><span class="txtbd">##cursocodigo##/##cursonome##/##cursolocal##/##cursodata##</span>&nbsp;</td>
+    </tr>
+  <tr>
+    <td colspan="2" class="borda">&nbsp;</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th width="8%" scope="col" class="borda"><div align="center" class="titnum">22</div></th>
+    <th width="92%" scope="col" class="bordamaior"><div align="left" class="txthead">EXPERIÊNCIA FUNCIONAL (FUNÇÃO / ÓRGÃO / PERÍODO) </div></th>
+  </tr>
+  <tr>
+    <td colspan="2" class="borda"><span class="txtbd">##funcao## / ##orgao## / ##periodo##</span>&nbsp;</td>
+    </tr>
+  <tr>
+    <td colspan="2" class="borda">&nbsp;</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th colspan="6" scope="col" class="bordamaior"><div align="left" class="txthead">EXAME DE SAÚDE </div></th>
+    </tr>
+  <tr>
+    <td width="8%" class="borda"><div align="center" class="titnum">23</div></td>
+    <td width="25%" valign="top" class="borda"><span class="txtin">JES/DATA:</span><span class="txtbd">##jesdata##</span></td>
+    <td width="8%" class="borda"><div align="center" class="titnum">24</div></td>
+    <td width="25%" valign="top" class="borda"><span class="txtin">PARECER:</span><span class="txtbd">##jesparecer##</span></td>
+    <td width="8%" class="borda"><div align="center" class="titnum">25</div></td>
+    <td width="26%" valign="top" class="borda"><span class="txtin">VALIDADE:</span><span class="txtbd">##jesvalidade##</span></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th colspan="2" scope="col" class="bordamaior"><div align="left" class="txthead">DADOS DO RESPONSÁVEL PELO PREENCHIMENTO </div></th>
+    </tr>
+  <tr>
+    <td width="8%" class="borda"><div align="center" class="titnum">26</div></td>
+    <td width="92%" valign="top" class="borda"><span class="txtin">CIDADE E DATA:</span><span class="txtbd">&nbsp;&nbsp;SGPO</span></td>
+  </tr>
+  <tr>
+    <td width="8%" class="borda"><div align="center" class="titnum">27</div></td>
+    <td width="92%" valign="top" class="borda"><span class="txtin">POSTO / GRAD , ESP, NOME COMPLETO E FUNÇÃO:</span><span class="txtbd">&nbsp;&nbsp;SGPO</span></td>
+  </tr>
+  <tr>
+    <td width="8%" class="borda"><div align="center" class="titnum">28</div></td>
+    <td width="92%" valign="top" class="borda"><span class="txtin">ASSINATURA:</span><span class="txtbd">&nbsp;&nbsp;SGPO</span></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="borda"><div align="center"><strong>OBS.: Se necessário poderá ser utilizado o verso desta Ficha para informações complementares, citando o n&deg;do campo. </strong></div></td>
+  </tr>
+</table>
+<p align="center" class="style2">&nbsp;</p>
+</body>
+</cfloop>
+</html>
+<cfdocumentitem type="pagebreak">
+
+</cfoutput>
+
+
+
+
+
+
+
+</cfdocument>

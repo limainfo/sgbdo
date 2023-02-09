@@ -1,0 +1,39 @@
+
+<cfheader name="Content-Disposition" value="inline; filename=fichacadastral.pdf">
+				<cfdocument pagetype="a4" format="pdf" mimetype="image/jpeg" >
+
+<cfdocumentitem type="header">
+				<cfoutput><span style="align:right;float:right;size:10px;font-size:8px;">Anexo C - ICA 100-18/2011 - Página 47 <div style="float:right;margin:0px;vertical-align:top;font-weight:bold;font-size:8px;"></div></span></cfoutput>
+</cfdocumentitem>
+				<cfset url.i="Efetivo">
+				<cfset url.view="DC2A6937-49C6-4913-87DD2A29C1E1076F">
+				<cfset url.flag="8077">
+				<cfset url.tbl="pefca">
+				<cfset url.tp="codca##sb7">
+		                <cfscript>
+					pasta = "efetivo";
+					tb = "cadastros";
+					id = "cadastroID";
+					busca = "nome";
+					dominio = "gov.br";
+				</cfscript>
+
+				<cfquery datasource="#dsn#" name="pessoa">
+				 select * from sgpo_fichas 
+				 inner join sgpo_estagiarios on (sgpo_estagiarios.estagiarioID=sgpo_fichas.estagiarioID)
+				WHERE  sgpo_fichas.fichaID=<cfqueryparam value="#url.d#">
+				</cfquery>
+
+
+				<cfquery datasource="#dsn#" name="rs">
+					    select * from view_cadastros WHERE 
+					    cadastroID is not null
+					    and cpf = <cfqueryparam value="#pessoa.cpf#">
+					    order by nome
+				</cfquery>
+
+<cfdocumentitem type="pagebreak">
+
+
+
+</cfdocument>
