@@ -1,0 +1,31 @@
+<?php
+class DATABASE_CONFIG {
+	var $defaultall= array(
+		'driver' => 'mysql',
+		'persistent' => true,
+		'host' => '10.112.24.12',
+		'login' => 'sgbdo',
+		'password' => 'sgbdo',
+		'database' => 'SGBDO',
+		'encoding' => 'utf8'
+	);
+	var $defaultbackupinicial = array(
+		'driver' => 'mysql',
+		'persistent' => true,
+		'host' => 'localhost',
+		'login' => 'sgbdocindacta4backup',
+		'password' => 'sgbdok2',
+		'database' => 'sgbdo',
+		'encoding' => 'utf8'
+	);
+	var $default = array(
+		'driver' => 'mysql',
+		'persistent' => true,
+		'host' => 'localhost',
+		'login' => 'sgbdo',
+		'password' => 'sgbdok2',
+		'database' => 'estruturasgbdo',
+		'encoding' => 'utf8'
+	);
+}
+?>
