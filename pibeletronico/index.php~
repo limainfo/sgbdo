@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, follow">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PIB Eletr&ocirc;nico</title>
+    <link rel="stylesheet"  href="jqmobile/jquery.mobile-1.3.2.min.css">
+    <link rel="stylesheet"  href="jqmobile/jquery-mobile-fluid960.css">
+   <link rel="stylesheet" href="jqmobile/fab.css" />
+   <link rel="stylesheet" type="text/css" href="jqmobile/jqm-datebox.min.css" />    
+    <link rel="shortcut icon" href="demos/_assets/favicon.ico">
+    <script src="jqmobile/jquery-1.10.2.js"></script>
+    <script src="jqmobile/jquery.mobile-1.3.2.min.js"></script>
+    
+<script type="text/javascript" src="jqmobile/jqm-datebox.core.min.js"></script>
+<script type="text/javascript" src="jqmobile/jqm-datebox.mode.datebox.min.js"></script>
+<script type="text/javascript" src="jqmobile/jquery.mobile.datebox.i18n.pt-BR.utf8.js"></script>    
+    <script>
+		$( document ).on( "pageshow", function(){
+			//$( "p.message" ).hide().delay( 1500 ).show( "fast" );
+		});
+	</script>
+</head>
+<body>
+<php?
+print_r($_POST);
+?>
+<div data-role="page" >
+	<div data-role="header">
+		<h1>BOLETIM INTEGRADO AIS/MET</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<form id="boletim" name="boletim" action="localhost:8888/pibeletronico/pdf.cfm" method="POST">
+		<div class="container_12">
+			<div class="grid_2">
+				&nbsp;
+			</div>		
+			<div class="grid_8">
+					<label for="destinos">INFORME AD PART/DEST/ALTN SEPARADOS POR V&Iacute;GULA E SEM ESPA&Ccedil;OS. Ex. SBEG,SBTT,SBTS</label>
+					<input type="text" name="destinos" id="destinos" value="" style="text-transform:uppercase;" /><br />
+			</div>		
+			<div class="grid_2">
+			&nbsp;
+			</div>
+		</div>
+		<div class="container_12">
+			<div class="grid_2">
+				&nbsp;
+			</div>		
+			<div class="grid_2">
+					<label for="nivelvoo">N&Iacute;VEL DE V&Ocirc;O</label>
+					<input type="text" name="nivelvoo" id="nivelvoo" value="" /><br />
+			</div>
+			<div class="grid_4">
+					<label for="nivelvoo">SELECIONE A FIR</label>
+					<select name="fir" id="fir"  data-theme="b" data-content-theme="d" >
+						<option value="SBAO">SBAO - FIR  ATLANTICO</option>
+						<option value="SBAZ">SBAZ - FIR AMAZONICA</option>
+						<option value="SBBS">SBBS - FIR  BRASILIA</option>
+						<option value="SBCW">SBCW - FIR - CURITIBA</option>
+						<option value="SBRE">SBRE - FIR  RECIFE</option>
+						<option value="SBXX">SBXX - LINGUAGEM CLARA</option>
+					</select>
+			</div>    		
+			<div class="grid_2">
+			
+					<label for="horario">HOR&Aacute;RIO</label>
+					<input name="horario" id="horario" type="date" data-role="datebox"    data-options='{"mode": "timebox"}'>
+					
+			</div>		
+			<div class="grid_2">
+				&nbsp;
+			</div>		
+		</div>
+		<div class="container_12">
+			<div class="grid_2">
+				&nbsp;
+			</div>		
+			<div class="grid_8">
+				
+				<div data-role="collapsible" data-collapsed="true"  data-theme="b" data-content-theme="d" >
+				<h3>
+							<b>INFORMA&Ccedil;&Otilde;ES DISPON&Iacute;VEIS PARA AER&Oacute;DROMO</b>
+				</h3>
+				<p>
+					<div class="container_12">
+						<fieldset data-role="controlgroup">
+						<div class="grid_4">
+							<input type="checkbox" name="notam" id="notam" value="notam" checked="true" data-icon="checkbox-on">
+							<label for="notam">NOTAM</label>
+							<input type="checkbox" name="airep" id="airep" value="airep">
+							<label for="airep">AIREP</label>
+							<input type="checkbox" name="avisoad" id="avisoad" value="aviso_aerodromo" checked="true" data-icon="checkbox-on">
+							<label for="avisoad">AVISO AD</label>
+							<input type="checkbox" name="cinzas" id="cinzas" value="cinzas">
+							<label for="cinzas">CINZAS</label>
+							<input type="checkbox" name="ciclone" id="ciclone" value="ciclone">
+							<label for="ciclone">CICLONE</label>
+						</div>
+						<div class="grid_4">
+							<input type="checkbox" name="furacao" id="furacao" value="furacao">
+							<label for="furacao">FURAC&Atilde;O</label>
+							<input type="checkbox" name="metar" id="metar" value="metar" checked="true">
+							<label for="metar">METAR</label>
+							<input type="checkbox" name="pilot" id="pilot" value="pilot">
+							<label for="pilot">PILOT</label>
+							<input type="checkbox" name="taf" id="taf" value="taf" checked="true" data-icon="checkbox-on">
+							<label for="taf">TAF</label>
+							<input type="checkbox" name="tempestade" id="tempestade" value="tempestade">
+							<label for="tempestade">TEMPESTADE</label>
+						</div>
+						<div class="grid_4">
+							<input type="checkbox" name="winten" id="winten" value="winten">
+							<label for="winten">WINTEN</label>
+							<input type="checkbox" name="tornado" id="tornado" value="tornado">
+							<label for="tornado">TORNADO</label>
+							<input type="checkbox" name="synop" id="synop" value="synop">
+							<label for="synop">SYNOP</label>
+							<input type="checkbox" name="supaip" id="supaip" value="supaip">
+							<label for="supaip">SUP. AIP</label>
+							<input type="checkbox" name="temp" id="temp" value="temp">
+							<label for="temp">TEMP</label>
+						</div>
+						</fieldset>
+					</div>
+				</p>
+				</div>
+			</div>
+			<div class="grid_2">
+				&nbsp;
+			</div>
+		</div>
+		<div class="container_12">
+			<div class="grid_2">
+				&nbsp;
+			</div>		
+			<div class="grid_8">
+				
+				<div data-role="collapsible" data-collapsed="true"  data-theme="b" data-content-theme="d" >
+				<h3>
+							<b>INFORMA&Ccedil;&Otilde;ES DISPON&Iacute;VEIS PARA FIR</b>
+				</h3>
+				<p>
+					<div class="container_12">
+						<fieldset data-role="controlgroup">
+							<input type="checkbox" name="airmet" id="airmet" value="aviso_aerodromo" checked="true" data-icon="checkbox-on">
+							<label for="airmet">AIRMET</label>
+							<input type="checkbox" name="sigmet" id="sigmet" value="sigmet" checked="true" data-icon="checkbox-on">
+							<label for="sigmet">SIGMET</label>
+							<input type="checkbox" name="gamet" id="gamet" value="aviso_aerodromo" checked="true" data-icon="checkbox-on">
+							<label for="gamet">GAMET</label>
+						</fieldset>
+					</div>
+				</p>
+				</div>
+			</div>
+			<div class="grid_2">
+				&nbsp;
+			</div>
+		</div>
+		<div class="container_12">
+			<div class="grid_2">
+				&nbsp;
+			</div>		
+			<div class="grid_8">
+				
+				<div data-role="collapsible" data-collapsed="true"  data-theme="b" data-content-theme="d" >
+				<h3>
+							<b>CARTAS METEOROL&Oacute;GICAS</b>
+				</h3>
+				<p>
+					<div class="container_12">
+						<fieldset data-role="controlgroup">
+							<input type="checkbox" name="sigwx" id="sigwx" value="sigwx" checked="true" data-icon="checkbox-on">
+							<label for="sigwx">SIGWX</label>
+							<input type="checkbox" name="vento" id="vento" value="vento" checked="true" data-icon="checkbox-on">
+							<label for="vento">VENTO</label>
+							<input type="checkbox" name="eta" id="eta" value="eta" checked="true" data-icon="checkbox-on">
+							<label for="eta">ETA (Am&eacute;rica do Sul 24h)</label>
+							<input type="checkbox" name="satelite" id="satelite" value="satelite" checked="true" data-icon="checkbox-on">
+							<label for="satelite">SAT&Eacute;LITE</label>
+						</fieldset>
+					</div>
+				</p>
+				</div>
+			</div>
+			<div class="grid_2">
+				&nbsp;
+			</div>
+		</div>
+		<div class="container_12">
+			<div class="grid_2">
+				&nbsp;
+			</div>		
+			<div class="grid_8">
+					<input type="submit" name="loginSubmit" id="loginSubmit" value="GERAR BOLETIM"   data-theme="e" />
+			</div>		
+			<div class="grid_2">
+			&nbsp;
+			</div>
+		</div>
+		
+		
+		</form>
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>PIB ELETR&Ocirc;NICO</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+</body>
+</html>
