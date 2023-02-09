@@ -1,0 +1,40 @@
+<?php 
+
+error_reporting(E_ALL);
+
+$libera = 0;
+require('./ldap.php');
+if(!empty($_POST['data']['login']) && !empty($_POST['data']['senha'])){
+	if((empty($_COOKIE['id'])&&(empty($_COOKIE['login'])))){
+		$texto = autentica($_POST['data']['login'], $_POST['data']['senha']);
+		if($texto=='OK'){$libera=1;}
+	}
+}
+//echo $texto;
+if(!$libera){
+
+?>
+<html><head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">    
+<title>:: Área Restrita da Divisão de Operações</title>
+<link href="/sgbdo/img/favicon.ico" rel="shortcut icon">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<script src="/sgbdo/js/prototype.js" type="text/javascript"></script>
+	<script src="/sgbdo/js/scriptaculous.js?load=effects" type="text/javascript"></script><script src="http://localhost/sgbdo/js/effects.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="alertaSistemaTitulo"><p style="background-color: #800000; color: #fff; height: 30px; margin: 0px; vertical-align: top; border: 2px; border-color: #000;text-align:center;">MENSAGEM DO SISTEMA</p></div>
+<div id="alertaSistema"><p style="margin: 0px; background-color: #ffff00;text-align:center; border: 1px solid #000;">
+<?php echo $texto; ?>
+<a href="index.php">Tentar novamente</a>
+</p></div>
+</div>	
+
+</body>
+</html>
+<?php
+
+}else{
+   require('./sms.php');
+
+} ?>
