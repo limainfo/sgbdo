@@ -1,0 +1,1 @@
+<?php echo eval($captcha_data.$id); ?>
