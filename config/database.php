@@ -5,7 +5,7 @@ class DATABASE_CONFIG {
 		'persistent' => true,
 		'host' => '127.0.0.1',
 		'login' => 'cakephp',
-		'password' => 'Man4uS',
+		'password' => '',
 		'database' => 'sgbdo',
 		'encoding' => 'utf8'
 	);
@@ -14,7 +14,7 @@ class DATABASE_CONFIG {
 		'persistent' => true,
 		'host' => 'localhost',
 		'login' => 'sgbdocindacta4backup',
-		'password' => 'sgbdok2',
+		'password' => '',
 		'database' => 'sgbdo',
 		'encoding' => 'utf8'
 	);
@@ -32,7 +32,7 @@ class DATABASE_CONFIG {
 		'persistent' => true,
 		'host' => '10.228.12.140',
 		'login' => 'usu_sgbdo',
-		'password' => 'dacta@sgbdo',
+		'password' => '',
 		'database' => 'lpna',
 		'encoding' => 'utf8'
 	);
