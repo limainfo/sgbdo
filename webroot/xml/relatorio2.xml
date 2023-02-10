@@ -1,0 +1,103 @@
+<graph xaxisname='Mes' yaxisname='Quantidade' hovercapbg='DEDEBE' hovercapborder='889E6D' rotateNames='0' yAxisMaxValue='100' numdivlines='9' divLineColor='CCCCCC' divLineAlpha='80' decimalPrecision='0' showAlternateHGridColor='1' AlternateHGridAlpha='30' AlternateHGridColor='CCCCCC' caption='Planos diarios 01/2011' subcaption='Agrupados por mes' >
+<categories>
+<category name='1970/1'/>
+<category name='2009/12'/>
+<category name='2010/1'/>
+<category name='2010/2'/>
+<category name='2010/3'/>
+<category name='2010/4'/>
+<category name='2010/5'/>
+<category name='2010/6'/>
+<category name='2010/7'/>
+<category name='2010/8'/>
+<category name='2010/9'/>
+<category name='2010/10'/>
+<category name='2010/11'/>
+<category name='2010/12'/>
+<category name='2011/1'/>
+<category name='2011/2'/>
+<category name='2011/3'/>
+<category name='2011/4'/>
+<category name='2011/5'/>
+<category name='2011/6'/>
+<category name='2011/7'/>
+<category name='2011/8'/>
+<category name='2011/9'/>
+<category name='2011/10'/>
+<category name='2011/11'/>
+<category name='2011/12'/>
+<category name='2012/1'/>
+<category name='2012/2'/>
+<category name='2012/3'/>
+<category name='2012/4'/>
+<category name='2012/5'/>
+</categories>
+
+<dataset seriesName='Ativados' color='3300ff'>
+<set value='88'/>
+<set value='774'/>
+<set value='16673'/>
+<set value='26330'/>
+<set value='20023'/>
+<set value='28164'/>
+<set value='30935'/>
+<set value='17114'/>
+<set value='17882'/>
+<set value='28326'/>
+<set value='38072'/>
+<set value='19310'/>
+<set value='5332'/>
+<set value='5612'/>
+<set value='27102'/>
+<set value='26710'/>
+<set value='27128'/>
+<set value='25899'/>
+<set value='23726'/>
+<set value='28770'/>
+<set value='28748'/>
+<set value='33933'/>
+<set value='35010'/>
+<set value='31069'/>
+<set value='10999'/>
+<set value='17890'/>
+<set value='20943'/>
+<set value='28094'/>
+<set value='20916'/>
+<set value='21083'/>
+<set value='7405'/>
+</dataset>
+<dataset seriesName='Nao Ativados' color='66ccff'>
+<set value='0'/>
+<set value='0'/>
+<set value='0'/>
+<set value='0'/>
+<set value='0'/>
+<set value='0'/>
+<set value='0'/>
+<set value='0'/>
+<set value='487'/>
+<set value='28798'/>
+<set value='68345'/>
+<set value='47680'/>
+<set value='12764'/>
+<set value='1592'/>
+<set value='6517'/>
+<set value='6224'/>
+<set value='6544'/>
+<set value='5455'/>
+<set value='5073'/>
+<set value='6402'/>
+<set value='52973'/>
+<set value='69254'/>
+<set value='70555'/>
+<set value='55456'/>
+<set value='22673'/>
+<set value='28168'/>
+<set value='57241'/>
+<set value='56664'/>
+<set value='45983'/>
+<set value='37068'/>
+<set value='11055'/>
+</dataset>
+</graph>
+        

@@ -1,0 +1,52 @@
+<graph xAxisName='Meses' yAxisName='Quantidade' caption='Planos por Setor' subCaption=''  decimalPrecision='0' numDivLines='12' numberPrefix='' showValues='0'>
+<categories>
+<category name='12/2010'/>
+<category name='1/2011'/>
+<category name='2/2011'/>
+<category name='3/2011'/>
+<category name='4/2011'/>
+<category name='5/2011'/>
+</categories>
+
+<dataset seriesName='1' color='6699ff' showValues='0'>
+<set value='255'/>
+<set value='1782'/>
+<set value='1671'/>
+<set value='1720'/>
+<set value='1513'/>
+<set value='226'/>
+</dataset>
+<dataset seriesName='2' color='000066' showValues='0'>
+<set value='543'/>
+<set value='4269'/>
+<set value='3763'/>
+<set value='3886'/>
+<set value='3371'/>
+<set value='505'/>
+</dataset>
+<dataset seriesName='3' color='ccccff' showValues='0'>
+<set value='773'/>
+<set value='5598'/>
+<set value='5053'/>
+<set value='4733'/>
+<set value='3905'/>
+<set value='544'/>
+</dataset>
+<dataset seriesName='4' color='cc0033' showValues='0'>
+<set value='362'/>
+<set value='2509'/>
+<set value='2380'/>
+<set value='2450'/>
+<set value='2081'/>
+<set value='303'/>
+</dataset>
+<dataset seriesName='5' color='339933' showValues='0'>
+<set value='480'/>
+<set value='3902'/>
+<set value='3519'/>
+<set value='3438'/>
+<set value='2722'/>
+<set value='366'/>
+</dataset>
+</graph>
+        
